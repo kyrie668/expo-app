@@ -334,12 +334,15 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     borderRadius: 12,
     minWidth: 80,
+    height:"auto"
   },
   quickActionContent: {
     alignItems: 'center',
   },
   quickActionText: {
     fontWeight: '500',
+    lineHeight: 16,
+    height: 16,
   },
   progressSection: {
     marginBottom: 16,
