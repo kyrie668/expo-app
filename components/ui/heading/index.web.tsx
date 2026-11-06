@@ -1,9 +1,11 @@
 import React, { forwardRef, memo } from 'react';
 import { headingStyle } from './styles';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import { StyleSheet, type StyleProp, type TextStyle } from 'react-native';
 type IHeadingProps = VariantProps<typeof headingStyle> &
-  React.ComponentPropsWithoutRef<'h1'> & {
+  Omit<React.ComponentPropsWithoutRef<'h1'>, 'style'> & {
     as?: React.ElementType;
+    style?: StyleProp<TextStyle>;
   };
 
 const MappedHeading = memo(
@@ -18,10 +20,12 @@ const MappedHeading = memo(
       sub,
       italic,
       highlight,
+      style,
       ...props
     },
     ref
   ) {
+    const flatStyle = StyleSheet.flatten(style) as React.CSSProperties;
     switch (size) {
       case '5xl':
       case '4xl':
@@ -40,6 +44,7 @@ const MappedHeading = memo(
               class: className,
             })}
             {...props}
+            style={flatStyle}
             ref={ref}
           />
         );
@@ -58,6 +63,7 @@ const MappedHeading = memo(
               class: className,
             })}
             {...props}
+            style={flatStyle}
             ref={ref}
           />
         );
@@ -76,6 +82,7 @@ const MappedHeading = memo(
               class: className,
             })}
             {...props}
+            style={flatStyle}
             ref={ref}
           />
         );
@@ -94,6 +101,7 @@ const MappedHeading = memo(
               class: className,
             })}
             {...props}
+            style={flatStyle}
             ref={ref}
           />
         );
@@ -112,6 +120,7 @@ const MappedHeading = memo(
               class: className,
             })}
             {...props}
+            style={flatStyle}
             ref={ref}
           />
         );
@@ -131,6 +140,7 @@ const MappedHeading = memo(
               class: className,
             })}
             {...props}
+            style={flatStyle}
             ref={ref}
           />
         );
@@ -149,6 +159,7 @@ const MappedHeading = memo(
               class: className,
             })}
             {...props}
+            style={flatStyle}
             ref={ref}
           />
         );
@@ -169,6 +180,8 @@ const Heading = memo(
       sub,
       italic,
       highlight,
+      style,
+      ...rest
     } = props;
 
     if (AsComp) {
@@ -185,7 +198,8 @@ const Heading = memo(
             highlight,
             class: className,
           })}
-          {...props}
+          {...rest}
+          style={StyleSheet.flatten(style) as React.CSSProperties}
           ref={ref}
         />
       );
